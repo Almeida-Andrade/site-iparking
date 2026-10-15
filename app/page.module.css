@@ -48,13 +48,14 @@
   gap: var(--vao);
 }
 
+/* O "i" oficial tem a haste preta: o bloco da marca é claro para ela aparecer */
 .blocoMarca {
-  background: var(--tinta);
+  background: var(--papel);
   display: grid;
   place-items: center;
   transition: background-color 0.2s;
 }
-.blocoMarca:hover { background: var(--tinta-2); }
+.blocoMarca:hover { background: var(--bloco-2); }
 .marcaPequena { height: 40px; width: auto; }
 
 .blocoNav {
@@ -95,27 +96,11 @@
   padding: 24px;
 }
 
-.nome {
-  font-size: var(--step-nome);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 0.82;
-  color: var(--verde);
-  display: flex;
-  align-items: flex-end;
-  white-space: nowrap;
-}
-/* A haste do i tem a altura das maiúsculas; o pingo sobe acima */
-.nomeI {
-  height: 1.06em;
-  width: auto;
-  margin-right: 0.02em;
-  margin-bottom: 0.005em;
-  flex: none;
-}
+.nome { width: 100%; }
+.logo { width: min(100%, 860px); height: auto; }
 
-.blocoFoto { margin: 0; min-height: 240px; filter: grayscale(1) contrast(1.05); }
-.blocoFotoBaixo { grid-row: 2; grid-column: 1; }
+/* Uma foto só, da altura do quadro inteiro */
+.blocoFoto { margin: 0; min-height: 240px; grid-row: 1 / span 2; grid-column: 2; }
 
 /* A abertura da foto principal: um obturador que corre da direita */
 .obturador { animation: abre 1.1s var(--ease-out) both; }
@@ -125,7 +110,7 @@
 
 .dupla {
   grid-row: 2;
-  grid-column: 2;
+  grid-column: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--vao);
@@ -218,51 +203,67 @@
 }
 .comoTexto p { font-size: var(--step-body); max-width: 46ch; }
 
-.comoDesenho {
-  grid-column: 1 / -1;
-  background: var(--tinta);
-  border-radius: var(--raio);
-  padding: 48px 24px 32px;
-}
-
-.fluxoLargo { width: 100%; height: auto; }
-.fluxoAlto { display: none; }
-
+/* Três quadros escuros, cada um com o seu desenho: rua, cancela, subsolo */
 .etapas {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--vao);
-  margin-top: 40px;
-  color: var(--papel);
 }
-.etapas li { display: grid; gap: 6px; max-width: 32ch; font-size: var(--step-body); }
-.etapas strong { font-size: var(--step-lead); font-weight: 600; color: var(--verde); }
+.etapas li {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 8px;
+  padding: 32px 28px 32px;
+  border-radius: var(--raio);
+  background: var(--tinta);
+  color: var(--papel);
+  font-size: var(--step-body);
+}
+.picto { width: 100%; max-width: 360px; height: auto; margin-bottom: 24px; }
+.etapas strong { font-size: var(--step-lead); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; color: var(--verde-claro); }
+.etapas span { max-width: 32ch; color: var(--papel); }
 
 /* ——— Onde fica ——— */
 
 .onde {
   margin-top: 200px;
-  position: relative;
-  min-height: 100svh;
+  padding: 0 var(--margem) var(--vao);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--vao);
+  align-items: stretch;
 }
 
-.ondeFoto {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+/* O corte do prédio: mostra que a iParking é o subsolo e que o pátio da frente é público */
+.ondeDesenho {
+  grid-column: 5 / -1;
+  grid-row: 1;
+  margin: 0;
+  padding: 40px 32px 32px;
+  border-radius: var(--raio);
+  background: var(--tinta);
+  color: var(--papel);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
 }
-.ondeFoto .foto { animation: deriva 24s ease-in-out infinite alternate; }
-@keyframes deriva { from { transform: scale(1.02); } to { transform: scale(1.1) translateX(-1.5%); } }
+.corte { width: 100%; height: auto; }
+.legenda { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: var(--step-body); }
+.legenda span { display: inline-flex; align-items: center; gap: 12px; }
+.legenda i { width: 20px; height: 20px; border-radius: 4px; flex: none; }
+.legendaVerde { background: var(--verde); }
+.legendaCinza { background: var(--cinza-2); }
 
 .cartao {
-  position: sticky;
-  top: 60px;
-  margin: 60px 0 60px 60px;
-  width: 380px;
+  grid-column: 1 / span 4;
+  grid-row: 1;
   background: var(--papel);
   border-radius: 8px;
   padding: 32px 32px 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   overflow: hidden;
 }
@@ -281,7 +282,7 @@
 .cartaoSituacao[data-aberto='sim'] { color: var(--verde-texto); }
 
 .cartaoBotao {
-  margin: 4px -32px 0;
+  margin: auto -32px 0;
   height: 52px;
   display: flex;
   align-items: center;
@@ -296,7 +297,7 @@
 
 /* ——— Dúvidas ——— */
 
-.duvidas { margin-top: 0; }
+.duvidas { margin-top: 200px; }
 
 .duvidasTitulo {
   min-height: 40svh;
@@ -376,17 +377,12 @@
 
 .rodapeNome {
   grid-column: 1 / span 8;
-  background: var(--tinta);
-  color: var(--verde);
+  background: var(--papel);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--step-nome);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 0.82;
 }
-.rodapeI { height: 1.02em; width: auto; margin-right: 0.02em; align-self: center; transform: translateY(-0.09em); }
+.rodapeLogo { width: min(78%, 720px); height: auto; }
 
 .rodapeAcao {
   grid-column: 9 / span 4;
@@ -410,6 +406,7 @@
 @media (max-width: 1100px) {
   .blocoNav { gap: 20px; padding: 0 20px; justify-content: flex-end; }
   .dupla { grid-template-columns: 1fr; }
+  .ondeDesenho, .cartao { grid-column: 1 / -1; grid-row: auto; }
   .tabela { display: none; }
   .planosCelular { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--vao); align-items: start; }
   .planosCelular .tituloSecao { grid-column: 1 / -1; padding: 0 20px 16px; }
@@ -437,9 +434,7 @@
   .topo { grid-template-columns: 56px 1fr; }
   .grade { grid-template-columns: 1fr; grid-template-rows: auto; }
   .blocoNome { min-height: 30svh; padding: 20px; }
-  .nome { font-size: 22vw; }
   .blocoFoto { grid-row: auto; grid-column: auto; aspect-ratio: 4 / 3; min-height: 0; }
-  .blocoFotoBaixo { display: none; }
   .dupla { grid-row: auto; grid-column: auto; }
   .dupla { grid-template-columns: 1fr; }
   .blocoEscuro, .blocoVerde { padding: 20px; }
@@ -449,23 +444,24 @@
 
   .como { padding-top: 120px; gap: 32px 0; }
   .comoTexto { grid-column: 1 / -1; padding-left: 12px; }
-  .comoDesenho { display: grid; grid-template-columns: 1fr 38vw; gap: 16px; padding: 24px 16px; }
-  .fluxoLargo { display: none; }
-  .fluxoAlto { display: block; width: 100%; height: auto; }
-  .etapas { grid-template-columns: 1fr; margin-top: 0; align-content: space-around; }
+  .etapas { grid-template-columns: 1fr; }
+  .etapas li { padding: 24px 20px; }
+  .picto { max-width: 280px; margin-bottom: 16px; }
 
-  .onde { margin-top: 120px; min-height: 0; padding-bottom: 120px; }
-  .ondeFoto { position: relative; height: 70svh; }
-  .cartao { position: relative; top: auto; width: auto; margin: -80px 16px 0; }
+  .onde { margin-top: 120px; grid-template-columns: 1fr; }
+  .ondeDesenho, .cartao { grid-column: 1; grid-row: auto; }
+  .ondeDesenho { padding: 24px 16px 20px; gap: 20px; }
+  .legenda { flex-direction: column; }
   .cartaoBotao { height: 56px; }
 
+  .duvidas { margin-top: 120px; }
   .duvidasTitulo { min-height: 30svh; }
   .duvidasTitulo h2 { font-size: 22vw; }
   .faixa { grid-template-columns: 1fr; gap: 12px; padding: 32px 20px; }
   .faixa h3, .faixa p { grid-column: 1; }
 
   .rodape { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-flow: row dense; gap: 6px; }
-  .rodapeNome { grid-column: 1 / -1; order: -2; height: 160px; font-size: 22vw; }
+  .rodapeNome { grid-column: 1 / -1; order: -2; height: 160px; }
   .rodapeAcao { grid-column: 1 / -1; order: -1; min-height: 160px; }
   .rodapeNav { grid-column: 1; padding: 20px; }
   .rodapeGrupo { grid-column: 2; padding: 20px; font-size: var(--step-body); }

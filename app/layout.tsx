@@ -9,7 +9,7 @@ const fonte = Bricolage_Grotesque({
 
 const TITULO = 'iParking — Estacionamento da Galeria A, no Calhau'
 const DESCRICAO =
-  'Estacionamento rotativo no pátio e no subsolo da Galeria A, Av. dos Sambaquis, Calhau, São Luís. ' +
+  'Estacionamento rotativo no subsolo da Galeria A, Av. dos Sambaquis, Calhau, São Luís. ' +
   'R$ 10 a primeira hora, R$ 4 a hora adicional, diária de R$ 50 e mensalidade de R$ 400.'
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export const viewport: Viewport = { themeColor: '#121315' }
+export const viewport: Viewport = { themeColor: '#D9DAD5' }
 
 // Liga as entradas animadas só quando há script: sem ele, tudo aparece de saída.
 const LIGA_JS = "document.documentElement.classList.add('js')"

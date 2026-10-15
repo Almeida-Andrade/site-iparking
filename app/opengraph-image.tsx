@@ -7,7 +7,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Imagem() {
-  const logo = await readFile(join(process.cwd(), 'public/logo-iparking.png'))
+  const logo = await readFile(join(process.cwd(), 'public/marca/iparking.png'))
   const src = `data:image/png;base64,${logo.toString('base64')}`
   return new ImageResponse(
     (
@@ -19,7 +19,7 @@ export default async function Imagem() {
       >
         <div style={{ display: 'flex', flex: 1, background: '#FFFFFF', borderRadius: 6, alignItems: 'center', paddingLeft: 64 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} width={900 * 0.8} height={318 * 0.8} alt="" />
+          <img src={src} width={720} height={258} alt="" />
         </div>
         <div style={{ display: 'flex', gap: 16, height: 150 }}>
           <div style={{ display: 'flex', flex: 1, background: '#121315', color: '#FFFFFF', borderRadius: 6, padding: 28, fontSize: 34 }}>
