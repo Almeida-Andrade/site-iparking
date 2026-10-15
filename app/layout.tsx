@@ -10,7 +10,7 @@ const fonte = Bricolage_Grotesque({
 const TITULO = 'iParking — Estacionamento da Galeria A, no Calhau'
 const DESCRICAO =
   'Estacionamento rotativo no subsolo da Galeria A, Av. dos Sambaquis, Calhau, São Luís. ' +
-  'R$ 10 a primeira hora, R$ 4 a hora adicional, diária de R$ 50 e mensalidade de R$ 400.'
+  'R$ 10 a primeira hora, R$ 4 a hora adicional, diária de R$ 50 e mensalidade de R$ 500.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(URL_SITE),

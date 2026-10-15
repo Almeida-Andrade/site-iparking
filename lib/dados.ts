@@ -4,12 +4,12 @@ export const URL_SITE = process.env.NEXT_PUBLIC_URL_SITE
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3000'
 
-// Preços confirmados pelo dono em 13/10/2026. Mudou na cancela, muda aqui.
+// Preços confirmados pelo dono em 13/10/2026 (mensalidade corrigida para R$ 500 em 15/10/2026). Mudou na cancela, muda aqui.
 export const PRECO = {
   primeiraHora: 10,
   horaAdicional: 4,
   diaria: 50,
-  mensal: 400,
+  mensal: 500,
 }
 
 export const LOCAL = {
