@@ -1,0 +1,35 @@
+:root {
+  /* Medidas do logo: verde do "Parking", pingo azul do i, preto da haste, cinza de "ROTATIVOS" */
+  --verde: #019A48;
+  --azul: #24609E;
+  --tinta: #121315;
+  --cinza: #BABABA;
+  --cinza-2: #9EA1A6;
+
+  /* O pátio: chão de concreto entre os blocos, bloco um passo mais claro */
+  --chao: #D9DAD5;
+  --bloco: #F3F3F0;
+  --bloco-2: #E8E9E4;
+  --papel: #FFFFFF;
+  --tinta-suave: #4A4C50;
+  --tinta-2: #2A2C30;      /* tinta ao passar o mouse */
+  --trilho: #3A3C40;       /* trilho da calculadora sobre a tinta */
+  --verde-texto: #007A39;  /* verde que passa 4,5:1 sobre o branco */
+  --verde-claro: #12B05A;  /* verde ao passar o mouse */
+
+  --raio: 6px;
+  --vao: 8px;
+  --margem: 8px;
+
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-nome: clamp(4.5rem, 12vw, 11.5rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 900px) {
+  :root { --margem: 12px; }
+}
