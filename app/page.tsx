@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Situacao, Relogio } from '@/components/Agora'
 import { Calculadora } from '@/components/Calculadora'
 import { Entradas } from '@/components/Entradas'
+import { MenuCelular } from '@/components/MenuCelular'
 import { PictoCancela, PictoChegue, PictoSubsolo } from '@/components/Desenhos'
 import { CONTATO, EMPRESA, HORARIO, LOCAL, PRECO, real } from '@/lib/dados'
 import logo from '@/public/marca/iparking.png'
@@ -106,6 +107,15 @@ export default function Pagina() {
             <a href="#onde-fica">Onde fica</a>
             <a href="#duvidas">Dúvidas</a>
           </nav>
+          <MenuCelular
+            links={[
+              { href: '#precos', rotulo: 'Preços' },
+              { href: '#como-funciona', rotulo: 'Como funciona' },
+              { href: '#onde-fica', rotulo: 'Onde fica' },
+              { href: '#duvidas', rotulo: 'Dúvidas' },
+            ]}
+            classes={{ menu: s.menu, botao: `${s.bloco} ${s.menuBotao}`, lista: s.menuLista }}
+          />
           <a href={LOCAL.mapa} className={`${s.bloco} ${s.blocoAcao}`} target="_blank" rel="noopener">
             Como chegar
           </a>

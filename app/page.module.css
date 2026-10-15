@@ -58,6 +58,48 @@
 .blocoMarca:hover { background: var(--bloco-2); }
 .marcaPequena { height: 40px; width: auto; }
 
+/* Menu do celular: no desktop os links já estão no topo */
+.menu { display: none; }
+.menuBotao {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: var(--step-body);
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.2s;
+}
+.menuBotao::-webkit-details-marker { display: none; }
+.menuBotao::after { content: ''; width: 9px; height: 9px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform 0.2s; }
+.menu[open] .menuBotao { background: var(--tinta); color: var(--papel); }
+.menu[open] .menuBotao::after { transform: translateY(2px) rotate(-135deg); }
+.menuLista {
+  position: fixed;
+  top: calc(56px + var(--margem) * 2);
+  left: var(--margem);
+  right: var(--margem);
+  z-index: 51;
+  display: grid;
+  padding: 8px;
+  border-radius: var(--raio);
+  background: var(--tinta);
+  box-shadow: 0 16px 32px -16px rgba(18, 19, 21, 0.6);
+}
+.menuLista a {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 4px;
+  color: var(--papel);
+  font-size: var(--step-lead);
+  transition: background-color 0.2s;
+}
+.menuLista a:hover, .menuLista a:focus-visible { background: var(--tinta-2); }
+
 .blocoNav {
   display: flex;
   align-items: center;
@@ -408,15 +450,29 @@
 
 @media (max-width: 860px) {
   .blocoNav { display: none; }
-  .topo { grid-template-columns: 60px 1fr; }
+  .menu { display: block; }
+  .topo { grid-template-columns: 60px 1fr 1fr; }
   .blocoAcao { justify-content: center; }
 }
 
 /* ——— Celular ——— */
 
 @media (max-width: 760px) {
-  .quadro { min-height: 0; grid-template-rows: 56px auto; }
-  .topo { grid-template-columns: 56px 1fr; }
+  /* O topo fica preso na tela durante toda a rolagem */
+  .quadro { min-height: 0; grid-template-rows: auto; padding-top: calc(56px + var(--margem) * 2); }
+  .topo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: calc(56px + var(--margem) * 2);
+    padding: var(--margem);
+    background: var(--chao);
+    grid-template-columns: 56px 1fr 1fr;
+  }
+  .blocoAcao, .menuBotao { padding: 0 12px; white-space: nowrap; font-size: var(--step-body); justify-content: center; }
+  .precos, .como, .onde, .duvidas { scroll-margin-top: calc(56px + var(--margem) * 2); }
   .grade { grid-template-columns: 1fr; grid-template-rows: auto; }
   .blocoNome { min-height: 30svh; padding: 20px; }
   .blocoFoto { grid-row: auto; grid-column: auto; aspect-ratio: 4 / 5; min-height: 0; }
