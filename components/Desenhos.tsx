@@ -1,6 +1,5 @@
 // Desenhos da iParking, em formas chapadas com as cores do logo.
-// São esquemas, não plantas: mostram o caminho (rua, cancela, subsolo) e que só o subsolo é da iParking;
-// o pátio da frente é público.
+// São esquemas, não plantas: mostram o caminho da rua até o subsolo, que é onde fica a iParking.
 
 // Um carro visto de lado, 120 × 55, com a frente para a direita.
 function Carro({ x, y, cor, escala = 1 }: { x: number; y: number; cor: string; escala?: number }) {
@@ -67,36 +66,6 @@ export function PictoSubsolo({ className }: { className?: string }) {
       <rect x="10" y="80" width="280" height="96" rx="6" fill="var(--verde)" />
       <Carro x={26} y={112} cor="var(--tinta)" escala={0.95} />
       <Carro x={158} y={112} cor="var(--tinta)" escala={0.95} />
-    </svg>
-  )
-}
-
-// O corte da Galeria A: rua à esquerda, pátio público na frente, prédio, e o subsolo da iParking embaixo.
-export function Corte({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 1200 500" role="img" focusable="false"
-      aria-label="Desenho em corte da Galeria A: a rua, o pátio da frente, que é público, o prédio e, embaixo dele, o subsolo com as vagas da iParking">
-      {/* Prédio: quatro andares de vidro */}
-      <rect x="640" y="40" width="540" height="240" rx="4" fill="#2A2C30" />
-      {[0, 1, 2, 3].map((l) =>
-        Array.from({ length: 9 }, (_, c) => (
-          <rect key={`${l}-${c}`} x={664 + c * 56} y={58 + l * 54} width="42" height="34" rx="3" fill={CHAO} opacity="0.5" />
-        )),
-      )}
-      {/* Rua e pátio, no nível do chão */}
-      <rect x="0" y="232" width="250" height="48" fill="#2A2C30" />
-      <Carro x={60} y={210} cor="var(--cinza)" />
-      <Carro x={320} y={210} cor="var(--cinza-2)" />
-      <Carro x={470} y={210} cor="var(--cinza-2)" />
-      <rect x="0" y="276" width="1200" height="8" rx="4" fill={CHAO} />
-      {/* A descida para o subsolo */}
-      <path d="M210 250C262 250 262 320 296 352" fill="none" stroke="var(--papel)" strokeWidth="10" strokeLinecap="round" />
-      <path d="M268 352L300 356L290 326" fill="none" stroke="var(--papel)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
-      {/* O subsolo: a iParking */}
-      <rect x="320" y="304" width="860" height="176" rx="8" fill="var(--verde)" />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <Carro key={i} x={360 + i * 162} y={392} cor="var(--tinta)" />
-      ))}
     </svg>
   )
 }

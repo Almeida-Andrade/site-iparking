@@ -102,6 +102,7 @@
 /* Uma foto só, da altura do quadro inteiro */
 .blocoFoto { margin: 0; min-height: 240px; grid-row: 1 / span 2; grid-column: 2; }
 
+.fotoSaguao { object-position: 50% 40%; }
 /* A abertura da foto principal: um obturador que corre da direita */
 .obturador { animation: abre 1.1s var(--ease-out) both; }
 .obturador .foto { animation: assenta 1.4s var(--ease-out) both; }
@@ -228,42 +229,27 @@
 
 .onde {
   margin-top: 200px;
-  padding: 0 var(--margem) var(--vao);
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--vao);
-  align-items: stretch;
+  position: relative;
+  min-height: 100svh;
 }
 
-/* O corte do prédio: mostra que a iParking é o subsolo e que o pátio da frente é público */
-.ondeDesenho {
-  grid-column: 5 / -1;
-  grid-row: 1;
-  margin: 0;
-  padding: 40px 32px 32px;
-  border-radius: var(--raio);
-  background: var(--tinta);
-  color: var(--papel);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
+.ondeFoto {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
-.corte { width: 100%; height: auto; }
-.legenda { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: var(--step-body); }
-.legenda span { display: inline-flex; align-items: center; gap: 12px; }
-.legenda i { width: 20px; height: 20px; border-radius: 4px; flex: none; }
-.legendaVerde { background: var(--verde); }
-.legendaCinza { background: var(--cinza-2); }
+.ondeFoto .foto { animation: deriva 24s ease-in-out infinite alternate; }
+@keyframes deriva { from { transform: scale(1.02); } to { transform: scale(1.1) translateX(-1.5%); } }
 
 .cartao {
-  grid-column: 1 / span 4;
-  grid-row: 1;
+  position: sticky;
+  top: 60px;
+  margin: 60px 0 60px 60px;
+  width: 380px;
   background: var(--papel);
   border-radius: 8px;
   padding: 32px 32px 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 20px;
   overflow: hidden;
 }
@@ -282,7 +268,7 @@
 .cartaoSituacao[data-aberto='sim'] { color: var(--verde-texto); }
 
 .cartaoBotao {
-  margin: auto -32px 0;
+  margin: 4px -32px 0;
   height: 52px;
   display: flex;
   align-items: center;
@@ -297,7 +283,7 @@
 
 /* ——— Dúvidas ——— */
 
-.duvidas { margin-top: 200px; }
+.duvidas { margin-top: 0; }
 
 .duvidasTitulo {
   min-height: 40svh;
@@ -406,7 +392,6 @@
 @media (max-width: 1100px) {
   .blocoNav { gap: 20px; padding: 0 20px; justify-content: flex-end; }
   .dupla { grid-template-columns: 1fr; }
-  .ondeDesenho, .cartao { grid-column: 1 / -1; grid-row: auto; }
   .tabela { display: none; }
   .planosCelular { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--vao); align-items: start; }
   .planosCelular .tituloSecao { grid-column: 1 / -1; padding: 0 20px 16px; }
@@ -434,7 +419,7 @@
   .topo { grid-template-columns: 56px 1fr; }
   .grade { grid-template-columns: 1fr; grid-template-rows: auto; }
   .blocoNome { min-height: 30svh; padding: 20px; }
-  .blocoFoto { grid-row: auto; grid-column: auto; aspect-ratio: 4 / 3; min-height: 0; }
+  .blocoFoto { grid-row: auto; grid-column: auto; aspect-ratio: 4 / 5; min-height: 0; }
   .dupla { grid-row: auto; grid-column: auto; }
   .dupla { grid-template-columns: 1fr; }
   .blocoEscuro, .blocoVerde { padding: 20px; }
@@ -448,13 +433,12 @@
   .etapas li { padding: 24px 20px; }
   .picto { max-width: 280px; margin-bottom: 16px; }
 
-  .onde { margin-top: 120px; grid-template-columns: 1fr; }
-  .ondeDesenho, .cartao { grid-column: 1; grid-row: auto; }
-  .ondeDesenho { padding: 24px 16px 20px; gap: 20px; }
-  .legenda { flex-direction: column; }
+  .onde { margin-top: 120px; min-height: 0; padding-bottom: 120px; }
+  .ondeFoto { position: relative; height: 70svh; }
+  .cartao { position: relative; top: auto; width: auto; margin: -80px 16px 0; }
   .cartaoBotao { height: 56px; }
 
-  .duvidas { margin-top: 120px; }
+
   .duvidasTitulo { min-height: 30svh; }
   .duvidasTitulo h2 { font-size: 22vw; }
   .faixa { grid-template-columns: 1fr; gap: 12px; padding: 32px 20px; }

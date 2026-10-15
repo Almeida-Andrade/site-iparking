@@ -2,11 +2,12 @@ import Image from 'next/image'
 import { Situacao, Relogio } from '@/components/Agora'
 import { Calculadora } from '@/components/Calculadora'
 import { Entradas } from '@/components/Entradas'
-import { Corte, PictoCancela, PictoChegue, PictoSubsolo } from '@/components/Desenhos'
+import { PictoCancela, PictoChegue, PictoSubsolo } from '@/components/Desenhos'
 import { CONTATO, EMPRESA, HORARIO, LOCAL, PRECO, real } from '@/lib/dados'
 import logo from '@/public/marca/iparking.png'
 import logoI from '@/public/marca/iparking-i.png'
 import fachada from '@/public/fotos/galeria-a-fachada.jpg'
+import saguao from '@/public/fotos/galeria-a-saguao.jpg'
 import orla from '@/public/fotos/pescadores-litoranea.jpg'
 import s from './page.module.css'
 
@@ -118,8 +119,8 @@ export default function Pagina() {
           </div>
 
           <figure className={`${s.bloco} ${s.blocoFoto} ${s.obturador}`}>
-            <Image src={fachada} alt="A Galeria A vista da Av. dos Sambaquis: fachada de vidro, palmeiras e o pátio público na frente"
-              fill priority sizes="(max-width: 760px) 100vw, 42vw" className={s.foto} />
+            <Image src={saguao} alt="O saguão da Galeria A: parede de placas escuras com plantas, luminárias douradas e o letreiro da Galeria ao fundo"
+              fill priority sizes="(max-width: 760px) 100vw, 42vw" className={`${s.foto} ${s.fotoSaguao}`} />
           </figure>
 
           <div className={s.dupla}>
@@ -237,19 +238,17 @@ export default function Pagina() {
 
         {/* Onde fica */}
         <section id="onde-fica" className={s.onde} aria-labelledby="titulo-onde">
-          <figure className={s.ondeDesenho}>
-            <Corte className={s.corte} />
-            <figcaption className={s.legenda}>
-              <span><i className={s.legendaVerde} aria-hidden="true" />Subsolo: as vagas da iParking</span>
-              <span><i className={s.legendaCinza} aria-hidden="true" />Pátio da frente: público, não é da iParking</span>
-            </figcaption>
-          </figure>
+          <div className={s.ondeFoto}>
+            <Image src={fachada} alt="A Galeria A vista da Av. dos Sambaquis: fachada de vidro, palmeiras e o pátio público na frente"
+              fill sizes="100vw" className={s.foto} />
+          </div>
           <div className={s.cartao}>
             <h2 id="titulo-onde" className={s.cartaoTitulo}>No subsolo da {LOCAL.predio}</h2>
             <address className={s.endereco}>
               {LOCAL.rua}, {LOCAL.bairro}<br />
               {LOCAL.cidade} — {LOCAL.uf}
             </address>
+            <p className={s.endereco}>As vagas da iParking ficam no subsolo. O pátio da frente é público.</p>
             <dl className={s.horario}>
               {HORARIO.map((h) => (
                 <div key={h.dias}>
